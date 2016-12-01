@@ -1,6 +1,6 @@
 package tools;
 
-
+	import tools.ConfigReader;
 	import org.openqa.selenium.chrome.ChromeDriver;
 
 	public final class WebDriverProvider {
@@ -10,7 +10,9 @@ package tools;
 
 		public static synchronized ChromeDriver getInstance() {
 			if (driver == null)
-			System.setProperty("webdriver.chrome.driver", "D:\\Workspace\\drivers\\chromedriver.exe");
+				//ConfigReader.getBROWSER_TYPE();
+			BrowserType.valueOf(ConfigReader.getBROWSER_TYPE());
+			System.setProperty("webdriver.chrome.driver", BrowserType.getInstance());
 			driver = new ChromeDriver();      
       
 			return driver;
