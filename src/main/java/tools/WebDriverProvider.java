@@ -7,7 +7,7 @@ package tools;
 		private static final WebDriver driverInstance;
 
 		static{
-			driverInstance = BrowserType.valueOf("chrome").getInstance();
+			driverInstance = BrowserType.valueOf("CHROME").getInstance();
 		}
 
 		public static  WebDriver getWebDriver() {

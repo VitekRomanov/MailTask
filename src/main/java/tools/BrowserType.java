@@ -18,9 +18,10 @@ enum BrowserType {
 	@Override
 	 protected WebDriver getInstance()
 	 {
+		WebDriver driver;
 		System.setProperty("webdriver.chrome.driver", ConfigReader.getBROWSER_WAY());
-		 
-		 return new ChromeDriver();
+		driver = new ChromeDriver();
+		 return driver;
 	 	}
 	 };
 
