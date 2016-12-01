@@ -44,11 +44,7 @@ public static WebDriver driver;
 //		driver.findElement(By.xpath("//span[text()='Проверить']")).click();
 //		System.out.println("Before");
 //	}
-	@After
-	public void tearDown() throws Exception {
-		driver.findElement(By.xpath("//span[text()='Проверить']")).click();
-		System.out.println("After");
-	}
+
 	@Test
 	public void sendMail() {
 		SendMailPage sendmail = new SendMailPage(driver);
