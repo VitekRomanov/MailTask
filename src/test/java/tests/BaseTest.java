@@ -11,9 +11,9 @@ public class BaseTest {
     public void before()  {
     	WebDriverProvider.getWebDriver().get("https://mail.yandex.by");
     }      
-        @AfterClass
-        public void after() {
-        	WebDriverProvider.getWebDriver();
-        }
+     @AfterClass
+     public void after() {
+     WebDriverProvider.getWebDriver();
+     }
 
 }
