@@ -9,12 +9,11 @@ public class BaseTest {
   
     @BeforeClass
     public void before()  {
-    	WebDriverProvider.getInstance().manage().window().maximize();
-    	WebDriverProvider.getInstance().get("https://mail.yandex.by/");
+    	WebDriverProvider.getWebDriver().get("https://mail.yandex.by");
     }      
         @AfterClass
         public void after() {
-        	WebDriverProvider.getInstance().quit();
+        	WebDriverProvider.getWebDriver();
         }
 
 }

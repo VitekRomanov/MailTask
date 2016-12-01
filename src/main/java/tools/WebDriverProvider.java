@@ -1,23 +1,20 @@
 package tools;
 
-	import tools.ConfigReader;
-	import org.openqa.selenium.chrome.ChromeDriver;
+	import org.openqa.selenium.WebDriver;
 
 	public final class WebDriverProvider {
-		private static ChromeDriver driver = null;
 
-		private WebDriverProvider() {}
+		private static final WebDriver driverInstance;
 
-		public static synchronized ChromeDriver getInstance() {
-			if (driver == null)
-				//ConfigReader.getBROWSER_TYPE();
-			BrowserType.valueOf(ConfigReader.getBROWSER_TYPE());
-			System.setProperty("webdriver.chrome.driver", BrowserType.getInstance());
-			driver = new ChromeDriver();      
-      
-			return driver;
+		static{
+			driverInstance = BrowserType.valueOf("chrome").getInstance();
 		}
-		public ChromeDriver getWebDriver(){
-			return driver;
+
+		public static  WebDriver getWebDriver() {
+			return driverInstance;
+
+		}
+		public static void stopDriver(){
+			driverInstance.quit();
 		}
 }
