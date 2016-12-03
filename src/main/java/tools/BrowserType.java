@@ -4,22 +4,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import tools.ConfigReader;
 
 enum BrowserType {
-	 FIREFOX {
+	 firefox {
 	 @Override
 	 protected WebDriver getInstance()
 	 {	 
 		 return new FirefoxDriver();
 	 	}
 	 },
-	 CHROME {
+	 chrome {
 	@Override
 	 protected WebDriver getInstance()
 	 {
 		WebDriver driver;
-		System.setProperty("webdriver.chrome.driver", ConfigReader.getBROWSER_WAY());
+		System.setProperty("webdriver.chrome.driver", PropertiesReader.getBrowserWey());
 		driver = new ChromeDriver();
 		 return driver;
 	 	}
