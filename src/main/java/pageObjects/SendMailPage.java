@@ -1,7 +1,6 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,9 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import tools.WebDriverProvider;
+
 public class SendMailPage {
 
-	WebDriver driver;
+	WebDriver driver = WebDriverProvider.getWebDriver();
 
 	@FindBy(xpath="//span[text()='Написать']")
 	WebElement writeLatter;
@@ -50,20 +51,6 @@ public class SendMailPage {
 		tema.sendKeys(temaOfLatter);
 		letter.sendKeys(emailLatter);
 		sendButton.click();
-		//wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//span[text()='Проверить']"))));
-		refrash.click();
-		boolean present;
-		try {
-			wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//button[@data-action='save']"))));
-		    driver.findElement(By.xpath("//button[@data-action='save']"));
-		    present = true;
-		} catch (NoSuchElementException e) {
-		   present = false;
-		}
-		if (present) sevebutton.click();
-		else refrash.click();
-		
-		}
 	
-
+	}
 }

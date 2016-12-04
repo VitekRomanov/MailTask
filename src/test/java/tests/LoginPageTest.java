@@ -3,48 +3,39 @@ package tests;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.LoginPage;
+import tools.PropertiesReader;
+import tools.WebDriverProvider;
 
 
-public class LoginPageTest {
-	public static WebDriver driver;
+public class LoginPageTest extends BaseTest{
 	
-	@Before
-	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "D:\\Workspace\\drivers\\chromedriver.exe");
-        driver = new ChromeDriver();     
-        driver.get("https://mail.yandex.by");
-        driver.manage().window().maximize();
-        		
-	}
-	@After
-	public void tearDown() throws Exception {
-		driver.quit();
-	}
+	 @Before
+	 public void setUp() throws Exception {
+		 WebDriverProvider.getWebDriver().get(PropertiesReader.getUrl());
+	 }
+	
 	
 	@Test
 	public void isCorrectLogPass() {
-        LoginPage login = new LoginPage(driver);
+        LoginPage login = new LoginPage(WebDriverProvider.getWebDriver());
         login.loginAs("testuser2710", "2710user");
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(WebDriverProvider.getWebDriver(), 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//span[text()='Написать']"))));
-		assertNotNull(driver.findElement(By.xpath("//span[text()='Написать']")));
+		assertNotNull(WebDriverProvider.getWebDriver().findElement(By.xpath("//span[text()='Написать']")));
 	}
 	
 	@Test
 	public void isIncorrectLogPass() {
-        LoginPage login = new LoginPage(driver);
+        LoginPage login = new LoginPage(WebDriverProvider.getWebDriver());
         login.loginAs("testuser", "2710user");
-        assertTrue("Login or Email don't correct",  driver.getTitle().equals("Авторизация"));
+        assertTrue("Login or Email don't correct",  WebDriverProvider.getWebDriver().getTitle().equals("Авторизация"));
 	}
 
 }

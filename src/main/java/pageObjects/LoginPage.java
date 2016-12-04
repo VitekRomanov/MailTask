@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import tools.WebDriverProvider;
+
 public class LoginPage {
 	
-	WebDriver driver;
+	 WebDriver driver = WebDriverProvider.getWebDriver();
+	 
 	
 	@FindBy(name="login")
 	WebElement loginFild;
@@ -28,7 +31,7 @@ public class LoginPage {
 		passwordFild.sendKeys(password);
 		passwordFild.submit();
 		
-		return driver.getTitle();
+		return WebDriverProvider.getWebDriver().getTitle();
 		
 	}
 
