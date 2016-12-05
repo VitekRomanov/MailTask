@@ -19,15 +19,15 @@ public class SendMailTest extends BeforeLogIN{
 	
 	@Test
 	public void sendMail() {
+		
 		SendMailPage sendmail = new SendMailPage(WebDriverProvider.getWebDriver());
 		sendmail.writeTheLetter("somemail@yandex.ru", "some subject", "massage of happy");
-		System.out.println(WebDriverProvider.getWebDriver().getTitle());
 		assertTrue(WebDriverProvider.getWebDriver().getTitle().equals("Яндекс.Почта"));
 	}	
 	@Test
 	public void sendToIncorrectEmail() {
 		SendMailPage sendmail = new SendMailPage(WebDriverProvider.getWebDriver());
-		sendmail.writeTheLetter("somemx.ru", "some subject", "massage of happy");
+		sendmail.writeTheLetter("somemx.ruu", "some subject", "massage of error");
         boolean present;
 		try {
 			WebDriverProvider.getWebDriver().findElement(By.xpath("//div[@data-key='view=compose-field-to-error']"));
@@ -36,6 +36,7 @@ public class SendMailTest extends BeforeLogIN{
 		   present = false;
 		}
         assertTrue("Email address incorrect",present);
+		
 	}
 
 }

@@ -51,6 +51,7 @@ public class SendMailPage {
 		tema.sendKeys(temaOfLatter);
 		letter.sendKeys(emailLatter);
 		sendButton.click();
+		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//span[text()='Проверить']"))));
 	
 	}
 }

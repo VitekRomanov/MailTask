@@ -2,9 +2,7 @@ package tools;
 
 import java.util.ResourceBundle;
 
-/**
- * Class for working with property-files
- */
+
 public class PropertiesReader {
     private static final String BROWSER_TYPE;
     private static final String URL;
@@ -28,9 +26,4 @@ public class PropertiesReader {
         return BROWSER_WEY;
     }
 
-    public static void main(String[] args){
-        System.out.println(getBrowserType());
-        System.out.println(getUrl());
-        System.out.println(getBrowserWey());
-    }
 }
