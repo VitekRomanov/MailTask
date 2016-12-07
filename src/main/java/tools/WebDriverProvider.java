@@ -6,15 +6,23 @@ package tools;
 
 		private static  WebDriver driverInstance;
 
-		static{
-			driverInstance = BrowserType.valueOf(PropertiesReader.getBrowserType()).getInstance();
-		}
+//		static{
+//			driverInstance = BrowserType.valueOf(PropertiesReader.getBrowserType()).getInstance();
+//		}
 
-		public static  WebDriver getWebDriver() {
+		public static  WebDriver getWebDriver() {			
+		if (driverInstance==null){
+			initialise();
+		}
 			return driverInstance;
 
 		}
+		private static void initialise() {
+			driverInstance=BrowserType.valueOf(PropertiesReader.getBrowserType()).getInstance();
+			
+		}
 		public static void stopDriver(){
 			driverInstance.quit();
+			driverInstance = null;
 		}
 }

@@ -10,7 +10,10 @@ enum BrowserType {
 	 @Override
 	 protected WebDriver getInstance()
 	 {	 
-		 return new FirefoxDriver();
+		 WebDriver driver;
+		 System.setProperty("webdriver.gecko.driver", PropertiesReader.getFirefoxBrowserWey());
+		 driver = new FirefoxDriver();
+		 return driver;
 	 	}
 	 },
 	 chrome {
@@ -18,7 +21,7 @@ enum BrowserType {
 	 protected WebDriver getInstance()
 	 {
 		WebDriver driver;
-		System.setProperty("webdriver.chrome.driver", PropertiesReader.getBrowserWey());
+		System.setProperty("webdriver.chrome.driver", PropertiesReader.getChromeBrowserWey());
 		driver = new ChromeDriver();
 		 return driver;
 	 	}

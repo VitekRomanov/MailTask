@@ -1,6 +1,8 @@
 package pageObjects;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import tools.WebDriverProvider;
 
 public class SendMailPage {
+
+	private static final Logger logger = Logger.getLogger(SendMailPage.class);
 
 	WebDriver driver = WebDriverProvider.getWebDriver();
 
@@ -52,6 +56,21 @@ public class SendMailPage {
 		letter.sendKeys(emailLatter);
 		sendButton.click();
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//span[text()='Проверить']"))));
+		
+		logger.info("Send mail.Address: "+ adres+ " subject: "+ temaOfLatter + " letter: "+emailLatter);
 	
+	}
+	
+	public boolean isMailSend(){
+        boolean issend;
+		try {
+			WebDriverProvider.getWebDriver().findElement(By.xpath("//div[@data-key='view=compose-field-to-error']"));
+		    issend = false;
+		} catch (NoSuchElementException e) {
+			issend = true;
+		}
+		logger.info("letter was sent "+ issend);
+		return issend;
+		
 	}
 }
